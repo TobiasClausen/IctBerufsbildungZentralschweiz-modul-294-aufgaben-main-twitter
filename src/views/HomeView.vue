@@ -3,11 +3,20 @@ import { ref, onMounted } from 'vue'
 import LoginInfo from '@/components/LoginInfo.vue'
 import Composer from '@/components/Composer.vue'
 import Tweet from '@/components/Tweet.vue'
-import { fetchStream } from '../api/requests'
+import { fetchStream, checkAuth } from '../api/requests'
+import { useAuth } from '../api/auth'
 
+const { isLoggedIn } = useAuth()
 const loading = ref(true)
 const tweets = ref([])
 
+// Check auth status on mount
+onMounted(async () => {
+    const response = await checkAuth()
+    console.log('checkAuth Resultat', response)
+})
+
+// Fetch tweets on mount
 onMounted(async () => {
     loading.value = true
     try {
@@ -23,8 +32,8 @@ onMounted(async () => {
 
 <template>
   <div>
-    <LoginInfo />
-    <Composer />
+    <LoginInfo v-if="!isLoggedIn" />
+    <Composer v-if="isLoggedIn" />
     <div v-if="loading" class="loading">
       Lade Tweets...
     </div>
