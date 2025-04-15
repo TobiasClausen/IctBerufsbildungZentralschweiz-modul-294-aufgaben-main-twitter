@@ -16,6 +16,7 @@ describe('D1', () => {
 
     cy.visit('/')
     cy.get('.composer__textarea').type('Hallo Welt')
+    
     cy.get('.stats__counter').should('have.text', '10')
   })
 
