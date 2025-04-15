@@ -10,30 +10,32 @@ const { isLoggedIn } = useAuth()
 const loading = ref(true)
 const tweets = ref([])
 
+async function loadTweets() {
+  loading.value = true
+  try {
+    const stream = await fetchStream()
+    tweets.value = stream
+  } catch (error) {
+    console.error(error)
+  } finally {
+    loading.value = false
+  }
+}
+
 // Check auth status on mount
 onMounted(async () => {
-    const response = await checkAuth()
-    console.log('checkAuth Resultat', response)
+  const response = await checkAuth()
+  console.log('checkAuth Resultat', response)
 })
 
-// Fetch tweets on mount
-onMounted(async () => {
-    loading.value = true
-    try {
-        const stream = await fetchStream()
-        tweets.value = stream
-    } catch (error) {
-        console.error(error)
-    } finally {
-        loading.value = false
-    }
-})
+// Load tweets on mount and when new tweet is posted
+onMounted(loadTweets)
 </script>
 
 <template>
   <div>
     <LoginInfo v-if="!isLoggedIn" />
-    <Composer v-if="isLoggedIn" />
+    <Composer v-if="isLoggedIn" @posted="loadTweets" />
     <div v-if="loading" class="loading">
       Lade Tweets...
     </div>

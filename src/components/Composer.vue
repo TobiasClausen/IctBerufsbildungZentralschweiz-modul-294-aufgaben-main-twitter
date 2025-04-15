@@ -1,13 +1,21 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { createTweet } from '../api/requests'
 
+const emit = defineEmits(['posted'])
 const tweetText = ref('')
 const tweetLength = computed(() => tweetText.value.length)
 const isButtonDisabled = computed(() => tweetLength.value < 5)
+
+async function handleSubmit() {
+  await createTweet(tweetText.value)
+  emit('posted') 
+  tweetText.value = '' 
+}
 </script>
 
 <template>
-  <form class="composer">
+  <form class="composer" @submit.prevent="handleSubmit">
     <label class="composer__prompt">Was geht?</label>
     <textarea
         v-model="tweetText"
