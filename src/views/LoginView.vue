@@ -7,15 +7,24 @@ const router = useRouter()
 const email = ref('')
 const password = ref('')
 const error = ref(null)
+const errors = ref({
+    email: '',
+    password: ''
+})
 const isButtonDisabled = computed(() => !email.value || !password.value)
 
 async function login() {
   error.value = null
+  errors.value = { email: '', password: '' }
   try {
     await loginUser(email.value, password.value)
-    router.push('/')
+    await router.push('/')
   } catch (err) {
-    error.value = err.message || 'Login failed'
+    if (err.errors) {
+      errors.value = err.errors
+    } else {
+      error.value = err.message || 'Login failed'
+    }
     console.error('Login error:', err)
   }
 }
@@ -33,8 +42,8 @@ async function login() {
             type="email" 
             id="email" 
           />
-          <div v-if="error" class="form-error">
-            {{ error }}
+          <div v-if="errors.email" class="form-error">
+            {{ errors.email }}
           </div>
         </div>
         <div class="form-group">
@@ -45,6 +54,9 @@ async function login() {
             type="password" 
             id="password" 
           />
+          <div v-if="errors.password" class="form-error">
+            {{ errors.password }}
+          </div>
         </div>
         <div class="form-group">
           <button 
