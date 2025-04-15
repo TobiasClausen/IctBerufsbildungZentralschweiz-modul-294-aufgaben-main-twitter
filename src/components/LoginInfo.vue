@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 import IconSparkles from './icons/IconSparkles.vue'
 </script>
 
@@ -12,9 +13,9 @@ import IconSparkles from './icons/IconSparkles.vue'
         Du bist nicht angemeldet
       </h2>
       <div class="login-info__action">
-        <a href="#" class="btn btn--transparent">
+        <RouterLink to="/login" class="btn btn--transparent">
           Zum Login &nbsp; &rarr;
-        </a>
+        </RouterLink>
       </div>
     </div>
   </section>

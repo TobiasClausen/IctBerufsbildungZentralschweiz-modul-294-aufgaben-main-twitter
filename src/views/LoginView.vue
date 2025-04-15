@@ -1,3 +1,8 @@
+<script setup>
+// Hier kann deine Login-Logik hin
+</script>
+
+
 <template>
   <div class="login">
     <section class="login-wrapper">
