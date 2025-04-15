@@ -1,5 +1,4 @@
 <script setup>
-import IconSparkles from './components/icons/IconSparkles.vue'
 import Logo from './components/Logo.vue'
 import Navigation from "@/components/Navigation.vue";
 </script>
@@ -98,9 +97,7 @@ import Navigation from "@/components/Navigation.vue";
     </div>
   </div>
 </template>
-
 <style>
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -125,22 +122,6 @@ body {
   grid-template-columns: 220px auto 260px;
 }
 
-.logo {
-  font-size: 2.6rem;
-  font-weight: 500;
-  padding: 20px 0;
-
-  background: linear-gradient(to bottom, #fb7185, #e11d48);
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.logo strong {
-  font-weight: 800;
-}
-
 .content {
   min-height: 100vh;
   border-right: 1px solid #1e293b;
@@ -156,29 +137,6 @@ body {
 a {
   text-decoration: none;
   color: inherit;
-}
-
-.nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.nav a {
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  padding: 12px 0;
-  color: #64748b;
-}
-
-.nav a.router-link-active,
-.nav a:hover {
-  color: inherit;
-}
-
-.nav a svg {
-  width: 30px;
-  margin-right: 30px;
 }
 
 .composer {
@@ -240,51 +198,6 @@ a {
   padding-left: 2px;
 }
 
-.btn {
-  line-height: 1;
-  font-weight: bold;
-  height: 40px;
-  border-radius: 20px;
-  border: none;
-  appearance: none;
-  padding: 4px 20px;
-  background: #64748b;
-  color: #e2e8f0;
-  display: inline-flex;
-  align-items: center;
-  transition: background .2s ease-out;
-  white-space: nowrap;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.btn[disabled] {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.btn--primary {
-  background: #e11d48;
-  color: #fff;
-}
-
-.btn--primary:hover {
-  background: #f43f5e;
-}
-
-.btn--transparent {
-  background: rgba(255, 255, 255, .2);
-  color: #fff;
-}
-
-.btn--secondary:hover {
-  background: rgba(255, 255, 255, .3);
-}
-
-.btn--block {
-  width: 100%;
-}
-
 .tweet {
   display: flex;
   padding: 20px;
@@ -337,33 +250,6 @@ a {
   font-size: 1rem;
   line-height: 1.25;
   word-break: break-word;
-}
-
-.login-info {
-  padding: 20px;
-  color: #f1f5f9;
-  background: #334155;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.login-info__icon svg {
-  width: 50px;
-}
-
-.login-info__heading {
-  margin: 0;
-  line-height: 1;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 20px 0;
-}
-
-.login-info__content {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
 }
 
 .widget {
